@@ -11,7 +11,7 @@ This code computes, for a real quadratic field $F=\mathbb{Q}(\sqrt{D})$ of **nar
 
 The code evaluates the Hurwitz class numbers $H_F$ **only at the arguments $4p-t^2$ that actually occur** for totally positive prime elements $p$ with $N_{F/\mathbb{Q}}(p)\le A$ — it never forms the full class‑number table — and each distinct quartic CM field is built and certified once.
 
-For a Hecke eigenform the normalised eigenvalues $\lambda(p)=\operatorname{tr}\mathbb{T}'_{p}\in[-2,2]$, and the code's plots test their Sato–Tate distribution against the semicircle.
+For a Hecke eigenform the normalised eigenvalues $\lambda(p)=\textup{tr}\mathbb{T}'_{p}\in[-2,2]$, and the code's plots test their Sato–Tate distribution against the semicircle.
 
 ---
 
@@ -91,16 +91,6 @@ wa wb num den        # H_F((wa + wb·√D)/2) = num/den   (an exact rational)
 Np u v e1 e2
 ```
 
-- `Np` = $N_{F/\mathbb{Q}}(p)$;
+- `Np` = the norm of p: $N_{F/\mathbb{Q}}(p)$;
 - `(u,v)` = the reduced totally positive generator $\pi=(u+v\sqrt{D})/2$ of $p$;
 - `e1, e2` = the two Galois embeddings of the eigenvalue‑trace $\lambda(p)$ (for a **parallel** weight the trace is rational, so `e1 == e2`).
-
-To obtain the Sato–Tate normalised value in $[-2,2]$, divide by the generator's per‑place factor:
-
-$$
-a^{(1)}=\frac{e_1}{\pi_1^{(k_1-1)/2}\,\pi_2^{(k_2-1)/2}},\qquad
-a^{(2)}=\frac{e_2}{\pi_2^{(k_1-1)/2}\,\pi_1^{(k_2-1)/2}},\qquad
-\pi_1=\tfrac{u+v\sqrt{D}}{2},\ \pi_2=\tfrac{u-v\sqrt{D}}{2},
-$$
-
-which for $k_1=k_2$ collapses to $e_1/N_{F/\mathbb{Q}}(p)^{(k-1)/2}$. `plot.py` does this normalisation (and asserts the result respects the Ramanujan bound $|\lambda(p)|\le 2$).
